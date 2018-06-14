@@ -7,8 +7,8 @@ if [ ! -f "/nxt/.init" ]; then
 	# or an upgrade... in the second case, we want to do some cleanup to ensure
 	# that the upgrade will go smooth
 	
-	rm -Rf /nxt/lib && \
-	mkdir /nxt/conf
+	rm -Rf /ChainPlatform/lib && \
+	mkdir /ChainPlatform/conf
 	
 	# if a script was provided, we download it locally
 	# then we run it before anything else starts
@@ -22,13 +22,10 @@ if [ ! -f "/nxt/.init" ]; then
 	cd /
 	
 	# Now time to get the NRS client
-	wget --no-check-certificate https://bitbucket.org/Jelurida/nxt/downloads/nxt-client-$NRSVersion.zip && \
-	wget --no-check-certificate  https://bitbucket.org/Jelurida/nxt/downloads/nxt-client-$NRSVersion.changelog.txt.asc && \
-	gpg --keyserver pgpkeys.mit.edu --recv-key 0xFF18FD55 && \
-	gpg --verify nxt-client-$NRSVersion.changelog.txt.asc && \
-	unzip -o nxt-client*.zip && \
-	rm *.zip *.asc && \
-	cd /nxt && \
+	wget --no-check-certificate https://chainid.io/ChainPlatform.zip && \
+	unzip -o ChainPlatform.zip && \
+	rm *.zip && \
+	cd /ChainPlatform && \
 	rm -Rf *.exe src changelogs
 
 	if [ -n "${PLUGINS-}" ]; then
@@ -39,9 +36,9 @@ if [ ! -f "/nxt/.init" ]; then
 
 	# We figure out what is the current db folder
 	if [ "$NXTNET" = "main" ]; then
-		DB="nxt_db"
+		DB="cid_db"
 	else
-		DB="nxt_test_db"
+		DB="cid_test_db"
 	fi  
 
 	# just to be sure :)
@@ -61,15 +58,15 @@ if [ ! -f "/nxt/.init" ]; then
 	# linking of the config
 	if [ "$NXTNET" = "main" ]; then
 		echo " init-nxt.sh: Linking config to mainnet"
-		cp /nxt-boot/conf/nxt-main.properties /nxt/conf/nxt.properties
+		cp /nxt-boot/conf/nxt-main.properties /cid/conf/cid.properties
 	else
 		echo " init-nxt.sh: Linking config to testnet"
-		cp /nxt-boot/conf/nxt-test.properties /nxt/conf/nxt.properties
+		cp /nxt-boot/conf/nxt-test.properties /cid/conf/cid.properties
 	fi  
 
 	# if the admin password is defined in the ENV variable, we append to the config
 	if [ -n "${ADMINPASSWD-}" ]; then
-		echo -e "\nnxt.adminPassword=${ADMINPASSWD-}" >> /nxt/conf/nxt.properties
+		echo -e "\nxt.adminPassword=${ADMINPASSWD-}" >> /cid/conf/cid.properties
 	else
 		echo " ADMINPASSWD not provided"
 	fi
@@ -81,5 +78,5 @@ else
 	echo -e " init-nxt.sh: Init already done, skipping init."
 fi
 
-cd /nxt
+cd /ChainPlatform
 ./run.sh
