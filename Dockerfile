@@ -16,7 +16,7 @@ ADD scripts /cid-boot/scripts
 VOLUME /cid
 WORKDIR /cid-boot
 
-ENV NXTNET main	
+ENV CIDNET main	
 
 COPY ./cid-main.properties /cid-boot/conf/
 COPY ./cid-test.properties /cid-boot/conf/
