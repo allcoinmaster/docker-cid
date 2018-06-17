@@ -12,7 +12,7 @@ fi
 
 wget -q $url -O "$workdir/$tmp"
 
-pluginsFolder=/nxt/html/ui/plugins/
+pluginsFolder=/cid/html/ui/plugins/
 # if we passed a url describing the plugins to install
 # we loop thru the file, 
 # download the plugins
@@ -36,7 +36,7 @@ while IFS=$'\t' read -r pluginChecksum pluginURL || [[ -n "$line" ]]; do
    
    if [ "$checksum" == "$pluginChecksum" ]; then
       echo -e "Checksum for $filename matched - Installing plugin"
-      /nxt-boot/scripts/install-nxt-plugin.sh "$pluginsFolder" "$workdir/$filename"
+      /cid-boot/scripts/install-cid-plugin.sh "$pluginsFolder" "$workdir/$filename"
    else
       echo -e "MD5 Checksum for $filename FAILED - Skipping install"
    fi;
