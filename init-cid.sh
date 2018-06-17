@@ -79,5 +79,5 @@ else
 fi
 
 cd /ChainPlatform
-sudo chmod u+x ./run.sh
-sudo ./run.sh
+chmod u+x ./run.sh
+./run.sh
