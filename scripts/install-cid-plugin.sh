@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # usage
-# ./install-nxt-plugin.sh plugin1.zip plugin2.zip ...
+# ./install-cid-plugin.sh plugin1.zip plugin2.zip ...
 
-target=/nxt/html/ui/plugins/
+target=/cid/html/ui/plugins/
 
 for plugin in "$@"
 do
