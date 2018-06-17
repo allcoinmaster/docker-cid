@@ -6,4 +6,4 @@
 # just after the container started.
 target=/sample-script.log
 echo "New start" `date` >> "$target" 
-ls -al /nxt >> "$target"
+ls -al /cid >> "$target"
