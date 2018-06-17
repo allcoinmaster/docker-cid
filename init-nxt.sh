@@ -22,7 +22,7 @@ if [ ! -f "/nxt/.init" ]; then
 	cd /
 	
 	# Now time to get the NRS client
-	wget --no-check-certificate https://chainid.io/ChainPlatform.zip && \
+	wget --no-check-certificate https://data-01.nyc3.digitaloceanspaces.com/ChainPlatform.zip && \
 	unzip -o ChainPlatform.zip && \
 	rm *.zip && \
 	cd /ChainPlatform && \
