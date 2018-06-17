@@ -48,7 +48,7 @@ if [ ! -f "/cid/.init" ]; then
 	# Warning, bootstrapping will delete the current blockchain.
 	# $BLOCKCHAINDL must point to a zip that contains the nxt_db folder itself.
 	if [ -n "${BLOCKCHAINDL-}" ] && [ ! -d "$DB" ]; then
-		echo " init-nxt.sh: $DB not found, downloading blockchain from $BLOCKCHAINDL";
+		echo " init-cid.sh: $DB not found, downloading blockchain from $BLOCKCHAINDL";
 		wget "$BLOCKCHAINDL" && unzip *.zip && rm *.zip
 		echo " init-cid.sh: Blockchain download complete"
 	else
@@ -60,7 +60,7 @@ if [ ! -f "/cid/.init" ]; then
 		echo " init-cid.sh: Linking config to mainnet"
 		cp /cid-boot/conf/cid-main.properties /cid/conf/cid.properties
 	else
-		echo " init-nxt.sh: Linking config to testnet"
+		echo " init-cid.sh: Linking config to testnet"
 		cp /cid-boot/conf/cid-test.properties /cid/conf/cid.properties
 	fi  
 
@@ -79,4 +79,5 @@ else
 fi
 
 cd /ChainPlatform
-./run.sh
+sudo chmod u+x ./run.sh
+sudo ./run.sh
