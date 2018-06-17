@@ -7,21 +7,21 @@ ENV NRSVersion=1.11.13
 RUN \
   apk update && \
   apk add wget gpgme && \
-  mkdir /nxt-boot && \
+  mkdir /cid-boot && \
   mkdir /cid && \
   cd /
 
-ADD scripts /nxt-boot/scripts
+ADD scripts /cid-boot/scripts
 
 VOLUME /cid
-WORKDIR /nxt-boot
+WORKDIR /cid-boot
 
 ENV NXTNET main	
 
-COPY ./nxt-main.properties /nxt-boot/conf/
-COPY ./nxt-test.properties /nxt-boot/conf/
-COPY ./init-nxt.sh /nxt-boot/
+COPY ./cid-main.properties /cid-boot/conf/
+COPY ./cid-test.properties /cid-boot/conf/
+COPY ./init-cid.sh /nxt-boot/
 
 EXPOSE 6868 6969 6789 8888 9999
 
-CMD ["/nxt-boot/init-nxt.sh", "/bin/sh"]
+CMD ["/cid-boot/init-cid.sh", "/bin/sh"]
