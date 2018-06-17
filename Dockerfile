@@ -20,7 +20,7 @@ ENV NXTNET main
 
 COPY ./cid-main.properties /cid-boot/conf/
 COPY ./cid-test.properties /cid-boot/conf/
-COPY ./init-cid.sh /nxt-boot/
+COPY ./init-cid.sh /cid-boot/
 
 EXPOSE 6868 6969 6789 8888 9999
 
