@@ -7,21 +7,22 @@ ENV NRSVersion=1.11.13
 RUN \
   apk update && \
   apk add wget gpgme && \
-  mkdir /cid-boot && \
-  mkdir /cid && \
+  mkdir /bcid-boot && \
+  mkdir /bcid && \
   cd /
 
-ADD scripts /cid-boot/scripts
+ADD scripts /bcid-boot/scripts
 
-VOLUME /cid
-WORKDIR /cid-boot
+VOLUME /bcid
+WORKDIR /bcid-boot
 
 ENV CIDNET main	
 
-COPY ./cid-main.properties /cid-boot/conf/
-COPY ./cid-test.properties /cid-boot/conf/
-COPY ./init-cid.sh /cid-boot/
+COPY ./cid-main.properties /bcid-boot/conf/
+COPY ./bcid.properties /bcid-boot/conf/
+COPY ./cid-test.properties /bcid-boot/conf/
+COPY ./init-cid.sh /bcid-boot/
 
-EXPOSE 6868 6969 6789 8888 9999
+EXPOSE 6868 8686 6969 9696 6789 8888 9999
 
-CMD ["/cid-boot/init-cid.sh", "/bin/sh"]
+CMD ["/bcid-boot/init-cid.sh", "/bin/sh"]
